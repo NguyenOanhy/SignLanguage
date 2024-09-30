@@ -1,0 +1,23 @@
+def image_pca(image):
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Reshape image matrix into a vector
+        img_vec = gray.reshape(-1)
+
+        # Perform PCA on image vector
+        pca = PCA(n_components=1)
+        pca.fit(img_vec.reshape(-1, 1))
+        img_pca = pca.transform(img_vec.reshape(-1, 1))
+
+        # Project image onto eigenvectors
+        img_projected = pca.inverse_transform(img_pca)
+        # Reshape image vector back into a matrix
+        img_reconstructed = img_projected.reshape(gray.shape)
+
+        img_reconstructed = cv2.normalize(img_reconstructed, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+        # cv2.imshow('PCA Feature Image', img_reconstructed)
+        # cv2.imshow('origin', gray)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
+        return img_reconstructed
+
