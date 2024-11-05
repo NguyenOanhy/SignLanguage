@@ -1,3 +1,5 @@
 /train_data
 /venv
 /mymodel.h5
+/yolov9
+/last.pt
