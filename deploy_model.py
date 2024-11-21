@@ -4,7 +4,7 @@ import torch
 
 def detection():
     # Load the YOLOv9 model
-    model = torch.hub.load("./yolov9", "custom", path="last.pt", source='local')
+    model = torch.hub.load("./yolov9", "custom", path="best.pt", source='local')
 
     cap = cv2.VideoCapture(0)
     while True:
